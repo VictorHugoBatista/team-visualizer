@@ -68,7 +68,6 @@
     </div>
 </div>
 
-
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('roles'), 'has-success': fields.roles && fields.roles.valid }">
     <label for="roles" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">{{ trans('admin.admin-user.columns.roles') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">

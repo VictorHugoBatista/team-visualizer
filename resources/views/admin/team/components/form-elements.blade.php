@@ -18,7 +18,7 @@
     </label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
         <multiselect v-model="form.integrants" placeholder="Team integrants"
-            label="name" track-by="id" :options="[]" :multiple="true" open-direction="bottom">
+    label="name" track-by="id" :options="{{ $users }}" :multiple="true" open-direction="bottom">
         </multiselect>
     </div>
 </div>

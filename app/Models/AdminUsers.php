@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\User;
+use Brackets\AdminAuth\Models\AdminUser;
 
-class AdminUsers extends User
+class AdminUsers extends AdminUser
 {
-    protected $table = 'admin_users';
+    protected $appends = [
+        'full_name',
+        'resource_url',
+        'name',
+    ];
+
+    public function getNameAttribute()
+    {
+        return $this->getFullNameAttribute();
+    }
 }

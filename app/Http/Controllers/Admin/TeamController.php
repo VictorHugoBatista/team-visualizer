@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Team\IndexTeam;
 use App\Http\Requests\Admin\Team\StoreTeam;
 use App\Http\Requests\Admin\Team\UpdateTeam;
 use App\Models\Team;
+use App\Models\AdminUsers;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -65,7 +66,9 @@ class TeamController extends Controller
     {
         $this->authorize('admin.team.create');
 
-        return view('admin.team.create');
+        return view('admin.team.create', [
+            'users' => $this->getAllUsers(),
+        ]);
     }
 
     /**
@@ -117,6 +120,7 @@ class TeamController extends Controller
 
         return view('admin.team.edit', [
             'team' => $team,
+            'users' => $this->getAllUsers(),
         ]);
     }
 
@@ -184,5 +188,10 @@ class TeamController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+    private function getAllUsers()
+    {
+        return AdminUsers::all()->toJson();
     }
 }
