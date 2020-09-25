@@ -43,3 +43,18 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         Route::post('/password',                                    'ProfileController@updatePassword')->name('update-password');
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('Admin')->name('admin/')->group(static function() {
+        Route::prefix('teams')->name('teams/')->group(static function() {
+            Route::get('/',                                             'TeamController@index')->name('index');
+            Route::get('/create',                                       'TeamController@create')->name('create');
+            Route::post('/',                                            'TeamController@store')->name('store');
+            Route::get('/{team}/edit',                                  'TeamController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'TeamController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{team}',                                      'TeamController@update')->name('update');
+            Route::delete('/{team}',                                    'TeamController@destroy')->name('destroy');
+        });
+    });
+});
