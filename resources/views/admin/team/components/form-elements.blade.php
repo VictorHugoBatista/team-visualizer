@@ -12,4 +12,13 @@
     </div>
 </div>
 
-
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('integrants'), 'has-success': fields.integrants && fields.integrants.valid }">
+    <label for="title" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">
+        Team integrants
+    </label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <multiselect v-model="form.integrants" placeholder="Team integrants"
+            label="name" track-by="id" :options="[]" :multiple="true" open-direction="bottom">
+        </multiselect>
+    </div>
+</div>
