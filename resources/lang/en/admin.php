@@ -29,5 +29,21 @@ return [
         ],
     ],
 
+    'team' => [
+        'title' => 'Team',
+
+        'actions' => [
+            'index' => 'Team',
+            'create' => 'New Team',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'title' => 'Title',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];
