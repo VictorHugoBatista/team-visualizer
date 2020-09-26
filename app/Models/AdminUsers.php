@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Brackets\AdminAuth\Models\AdminUser;
+use App\Models\Team;
 
 class AdminUsers extends AdminUser
 {
@@ -15,5 +16,10 @@ class AdminUsers extends AdminUser
     public function getNameAttribute()
     {
         return $this->getFullNameAttribute();
+    }
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class);
     }
 }

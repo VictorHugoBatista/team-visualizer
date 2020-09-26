@@ -28,4 +28,9 @@ class Team extends Model
     {
         return url('/admin/teams/'.$this->getKey());
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(AdminUsers::class);
+    }
 }
