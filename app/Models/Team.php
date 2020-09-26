@@ -33,4 +33,17 @@ class Team extends Model
     {
         return $this->belongsToMany(AdminUsers::class);
     }
+
+    public function syncUsers($users)
+    {
+        $usersToRelateCollect = collect($users);
+        $usersToRelateWithRoles = $usersToRelateCollect->mapWithKeys(function ($user) {
+            return [
+                $user['id'] => [
+                    'role' => '',
+                ],
+            ];
+        });
+        $this->users()->sync(collect($usersToRelateWithRoles->toArray()));
+    }
 }

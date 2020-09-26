@@ -27,7 +27,7 @@ class StoreTeam extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
-            
+            'users' => ['nullable'],
         ];
     }
 

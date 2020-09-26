@@ -85,6 +85,9 @@ class TeamController extends Controller
         // Store the Team
         $team = Team::create($sanitized);
 
+        $usersToSync = isset($sanitized['users']) ? $sanitized['users'] : [];
+        $team->syncUsers($usersToSync);
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/teams'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
