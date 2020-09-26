@@ -10,19 +10,16 @@ class Team extends Model
 
     protected $fillable = [
         'title',
-    
     ];
-    
-    
+
     protected $dates = [
         'created_at',
         'updated_at',
-    
     ];
-    
-    protected $appends = ['resource_url'];
 
-    /* ************************ ACCESSOR ************************* */
+    protected $appends = [
+        'resource_url',
+    ];
 
     public function getResourceUrlAttribute()
     {
