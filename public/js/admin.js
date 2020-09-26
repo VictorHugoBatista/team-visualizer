@@ -116507,7 +116507,7 @@ Vue.component('team-form', {
     return {
       form: {
         title: '',
-        integrants: []
+        users: []
       }
     };
   }

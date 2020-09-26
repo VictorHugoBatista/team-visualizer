@@ -117,6 +117,7 @@ class TeamController extends Controller
     {
         $this->authorize('admin.team.edit', $team);
 
+        $team->load('users');
 
         return view('admin.team.edit', [
             'team' => $team,
