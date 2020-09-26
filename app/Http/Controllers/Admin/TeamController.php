@@ -143,6 +143,9 @@ class TeamController extends Controller
         // Update changed values Team
         $team->update($sanitized);
 
+        $usersToSync = isset($sanitized['users']) ? $sanitized['users'] : [];
+        $team->syncUsers($usersToSync);
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/teams'),

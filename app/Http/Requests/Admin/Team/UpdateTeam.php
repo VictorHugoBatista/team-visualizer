@@ -27,7 +27,7 @@ class UpdateTeam extends FormRequest
     {
         return [
             'title' => ['sometimes', 'string'],
-            
+            'users' => ['nullable'],
         ];
     }
 
