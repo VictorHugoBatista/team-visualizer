@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\AdminUser\ImpersonalLoginAdminUser;
 use App\Http\Requests\Admin\AdminUser\IndexAdminUser;
 use App\Http\Requests\Admin\AdminUser\StoreAdminUser;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUser;
+use App\Models\AdminUsers;
 use Brackets\AdminAuth\Models\AdminUser;
 use Spatie\Permission\Models\Role;
 use Brackets\AdminAuth\Activation\Facades\Activation;
@@ -133,11 +134,12 @@ class AdminUsersController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function edit(AdminUser $adminUser)
+    public function edit(AdminUsers $adminUser)
     {
         $this->authorize('admin.admin-user.edit', $adminUser);
 
         $adminUser->load('roles');
+        $adminUser->load('teams');
 
         return view('admin.admin-user.edit', [
             'adminUser' => $adminUser,
