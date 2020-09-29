@@ -103,10 +103,13 @@ class AdminUsersController extends Controller
         $sanitized = $request->getModifiedData();
 
         // Store the AdminUser
-        $adminUser = AdminUser::create($sanitized);
+        $adminUser = AdminUsers::create($sanitized);
 
         // But we do have a roles, so we need to attach the roles to the adminUser
         $adminUser->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
+
+        $usersToSync = isset($sanitized['teams']) ? $sanitized['teams'] : [];
+        $adminUser->syncTeams($usersToSync);
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/admin-users'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
@@ -158,7 +161,7 @@ class AdminUsersController extends Controller
      * @param AdminUser $adminUser
      * @return array|RedirectResponse|Redirector
      */
-    public function update(UpdateAdminUser $request, AdminUser $adminUser)
+    public function update(UpdateAdminUser $request, AdminUsers $adminUser)
     {
         // Sanitize input
         $sanitized = $request->getModifiedData();
@@ -170,6 +173,9 @@ class AdminUsersController extends Controller
         if ($request->input('roles')) {
             $adminUser->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
         }
+
+        $usersToSync = isset($sanitized['teams']) ? $sanitized['teams'] : [];
+        $adminUser->syncTeams($usersToSync);
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/admin-users'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];

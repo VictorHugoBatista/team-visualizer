@@ -36,6 +36,7 @@ class StoreAdminUser extends FormRequest
             'language' => ['required', 'string'],
                 
             'roles' => ['array'],
+            'teams' => ['array'],
                 
         ];
 
