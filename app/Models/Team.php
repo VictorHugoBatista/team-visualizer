@@ -19,11 +19,17 @@ class Team extends Model
 
     protected $appends = [
         'resource_url',
+        'name',
     ];
 
     public function getResourceUrlAttribute()
     {
         return url('/admin/teams/'.$this->getKey());
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->title;
     }
 
     public function users()

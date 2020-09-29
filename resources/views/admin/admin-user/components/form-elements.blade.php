@@ -75,3 +75,9 @@
         <div v-if="errors.has('roles')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('roles') }}</div>
     </div>
 </div>
+
+@include('admin.components.admin-user-team-field', [
+    'vModel' => 'teams',
+    'fieldName' => 'Users',
+    'options' => $teams,
+])

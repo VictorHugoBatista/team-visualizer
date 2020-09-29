@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\AdminUser\ImpersonalLoginAdminUser;
 use App\Http\Requests\Admin\AdminUser\IndexAdminUser;
 use App\Http\Requests\Admin\AdminUser\StoreAdminUser;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUser;
+use App\Models\Team;
 use App\Models\AdminUsers;
 use Brackets\AdminAuth\Models\AdminUser;
 use Spatie\Permission\Models\Role;
@@ -86,6 +87,7 @@ class AdminUsersController extends Controller
         return view('admin.admin-user.create', [
             'activation' => Config::get('admin-auth.activation_enabled'),
             'roles' => Role::where('guard_name', $this->guard)->get(),
+            'teams' => $this->getAllTeams(),
         ]);
     }
 
@@ -145,6 +147,7 @@ class AdminUsersController extends Controller
             'adminUser' => $adminUser,
             'activation' => Config::get('admin-auth.activation_enabled'),
             'roles' => Role::where('guard_name', $this->guard)->get(),
+            'teams' => $this->getAllTeams(),
         ]);
     }
 
@@ -239,4 +242,8 @@ class AdminUsersController extends Controller
         return redirect()->back();
     }
 
+    private function getAllTeams()
+    {
+        return Team::all()->toJson();
+    }
 }
