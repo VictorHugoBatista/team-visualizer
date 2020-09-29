@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\BO\AdminUsersTeam;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
@@ -19,11 +20,17 @@ class Team extends Model
 
     protected $appends = [
         'resource_url',
+        'name',
     ];
 
     public function getResourceUrlAttribute()
     {
         return url('/admin/teams/'.$this->getKey());
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->title;
     }
 
     public function users()
@@ -33,14 +40,6 @@ class Team extends Model
 
     public function syncUsers($users)
     {
-        $usersToRelateCollect = collect($users);
-        $usersToRelateWithRoles = $usersToRelateCollect->mapWithKeys(function ($user) {
-            return [
-                $user['id'] => [
-                    'role' => '',
-                ],
-            ];
-        });
-        $this->users()->sync(collect($usersToRelateWithRoles->toArray()));
+        AdminUsersTeam::sync($users, $this->users());
     }
 }

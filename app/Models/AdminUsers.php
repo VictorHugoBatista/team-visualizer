@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Brackets\AdminAuth\Models\AdminUser;
+use App\BO\AdminUsersTeam;
 use App\Models\Team;
+use Brackets\AdminAuth\Models\AdminUser;
 
 class AdminUsers extends AdminUser
 {
@@ -21,5 +22,10 @@ class AdminUsers extends AdminUser
     public function teams()
     {
         return $this->belongsToMany(Team::class);
+    }
+
+    public function syncTeams($teams)
+    {
+        AdminUsersTeam::sync($teams, $this->teams());
     }
 }

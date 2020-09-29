@@ -8,6 +8,8 @@ use App\Http\Requests\Admin\AdminUser\ImpersonalLoginAdminUser;
 use App\Http\Requests\Admin\AdminUser\IndexAdminUser;
 use App\Http\Requests\Admin\AdminUser\StoreAdminUser;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUser;
+use App\Models\Team;
+use App\Models\AdminUsers;
 use Brackets\AdminAuth\Models\AdminUser;
 use Spatie\Permission\Models\Role;
 use Brackets\AdminAuth\Activation\Facades\Activation;
@@ -85,6 +87,7 @@ class AdminUsersController extends Controller
         return view('admin.admin-user.create', [
             'activation' => Config::get('admin-auth.activation_enabled'),
             'roles' => Role::where('guard_name', $this->guard)->get(),
+            'teams' => $this->getAllTeams(),
         ]);
     }
 
@@ -100,10 +103,13 @@ class AdminUsersController extends Controller
         $sanitized = $request->getModifiedData();
 
         // Store the AdminUser
-        $adminUser = AdminUser::create($sanitized);
+        $adminUser = AdminUsers::create($sanitized);
 
         // But we do have a roles, so we need to attach the roles to the adminUser
         $adminUser->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
+
+        $usersToSync = isset($sanitized['teams']) ? $sanitized['teams'] : [];
+        $adminUser->syncTeams($usersToSync);
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/admin-users'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
@@ -133,16 +139,18 @@ class AdminUsersController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function edit(AdminUser $adminUser)
+    public function edit(AdminUsers $adminUser)
     {
         $this->authorize('admin.admin-user.edit', $adminUser);
 
         $adminUser->load('roles');
+        $adminUser->load('teams');
 
         return view('admin.admin-user.edit', [
             'adminUser' => $adminUser,
             'activation' => Config::get('admin-auth.activation_enabled'),
             'roles' => Role::where('guard_name', $this->guard)->get(),
+            'teams' => $this->getAllTeams(),
         ]);
     }
 
@@ -153,7 +161,7 @@ class AdminUsersController extends Controller
      * @param AdminUser $adminUser
      * @return array|RedirectResponse|Redirector
      */
-    public function update(UpdateAdminUser $request, AdminUser $adminUser)
+    public function update(UpdateAdminUser $request, AdminUsers $adminUser)
     {
         // Sanitize input
         $sanitized = $request->getModifiedData();
@@ -165,6 +173,9 @@ class AdminUsersController extends Controller
         if ($request->input('roles')) {
             $adminUser->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
         }
+
+        $usersToSync = isset($sanitized['teams']) ? $sanitized['teams'] : [];
+        $adminUser->syncTeams($usersToSync);
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/admin-users'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
@@ -237,4 +248,8 @@ class AdminUsersController extends Controller
         return redirect()->back();
     }
 
+    private function getAllTeams()
+    {
+        return Team::all()->toJson();
+    }
 }

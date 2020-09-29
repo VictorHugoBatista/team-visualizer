@@ -36,6 +36,7 @@ class UpdateAdminUser extends FormRequest
             'language' => ['sometimes', 'string'],
                 
             'roles' => ['sometimes', 'array'],
+            'teams' => ['sometimes', 'array'],
                 
         ];
 
