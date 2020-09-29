@@ -16,4 +16,6 @@
     'vModel' => 'users',
     'fieldName' => 'Team members',
     'options' => $users,
+    'colSizeLabel' => 'col-md-2',
+    'colSizeField' => 'col-md-9 col-xl-8',
 ])

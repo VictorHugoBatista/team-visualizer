@@ -80,4 +80,6 @@
     'vModel' => 'teams',
     'fieldName' => 'Users',
     'options' => $teams,
+    'colSizeLabel' => 'col-md-3',
+    'colSizeField' => 'col-md-9 col-xl-7',
 ])
