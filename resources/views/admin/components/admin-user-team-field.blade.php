@@ -4,8 +4,16 @@
         {{ $fieldName }}
     </label>
     <div :class="isFormLocalized ? 'col-md-4' : '{{ $colSizeField }}'">
-        <multiselect v-model="form.{{ $vModel }}" placeholder="{{ $fieldName }}"
+        <admin-user-team-field :options="'{{ $options }}'" :values="form.{{ $vModel }}" inline-template>
+            <div>
+                <div v-for="value in values">
+                    <input type="text" v-model="options" />
+                    <input type="text" v-model="value.name" />
+                </div>
+            </div>
+        </admin-user-team-field>
+        {{-- <multiselect v-model="form.{{ $vModel }}" placeholder="{{ $fieldName }}"
             label="name" track-by="id" :options="{{ $options }}" :multiple="true" open-direction="bottom">
-        </multiselect>
+        </multiselect> --}}
     </div>
 </div>
