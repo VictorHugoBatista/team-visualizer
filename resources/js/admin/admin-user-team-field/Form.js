@@ -25,5 +25,8 @@ Vue.component('admin-user-team-field', {
                 role: '',
             });
         },
+        removeLine(lineNumber) {
+            this.lines.splice(lineNumber, 1);
+        },
     },
 });

@@ -6,7 +6,7 @@
     <div :class="isFormLocalized ? 'col-md-4' : '{{ $colSizeField }}'">
         <admin-user-team-field :options="{{ $options }}" :values="form.{{ $vModel }}" inline-template>
             <div>
-                <div v-for="line in lines" class="mb-4">
+                <div v-for="(line, lineNumber) in lines" class="mb-4">
                     <div class="row">
                         <div class="col-md-5">
                             <select class="form-control" value="line.id">
@@ -21,7 +21,7 @@
                             <input type="text" class="form-control" placeholder="Role" :value="line.role" />
                         </div>
                         <div class="col-md-2">
-                            <div class="btn btn-block text-danger text-center">
+                            <div class="btn btn-block text-danger text-center" @click="removeLine(lineNumber)">
                                 Remove
                             </div>
                         </div>
