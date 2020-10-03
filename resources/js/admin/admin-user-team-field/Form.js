@@ -15,8 +15,15 @@ Vue.component('admin-user-team-field', {
         }
         this.lines = this.values.map(value => ({
             id: value.id,
-            name: value.name,
             role: '',
         }));
+    },
+    methods: {
+        addLine() {
+            this.lines.push({
+                id: '',
+                role: '',
+            });
+        },
     },
 });
