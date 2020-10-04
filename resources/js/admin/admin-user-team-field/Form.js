@@ -15,7 +15,7 @@ Vue.component('admin-user-team-field', {
         }
         this.lines = this.values.map(value => ({
             id: value.id,
-            role: '',
+            role: value.pivot.role,
         }));
     },
     methods: {
