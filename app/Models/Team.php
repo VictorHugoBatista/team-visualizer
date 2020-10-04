@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\BO\AdminUsersTeam;
+use App\Models\AdminUsersTeam;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
