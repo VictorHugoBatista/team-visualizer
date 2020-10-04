@@ -9,16 +9,15 @@
                 <div v-for="(line, lineNumber) in lines" class="mb-4">
                     <div class="row">
                         <div class="col-md-5">
-                            <select class="form-control" value="line.id">
+                            <select class="form-control" v-model="line.id">
                                 <option value="">{{ $fieldName }}</option>
                                 <option v-for="option in options"
-                                    :value="option.id" v-html="option.name"
-                                    :selected="option.id === line.id">
+                                    :value="option.id" v-html="option.name">
                                 </option>
                             </select>
                         </div>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" placeholder="Role" :value="line.role" />
+                            <input type="text" class="form-control" placeholder="Role" v-model="line.role" />
                         </div>
                         <div class="col-md-2">
                             <div class="btn btn-block text-danger text-center" @click="removeLine(lineNumber)">
