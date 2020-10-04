@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\BO\AdminUsersTeam as AdminUsersTeamBO;
-use App\Models\AdminUsersTeam;
+use App\BO\AdminUsersTeam;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
@@ -36,15 +35,11 @@ class Team extends Model
 
     public function users()
     {
-        return $this->belongsToMany(AdminUsers::class)
-            ->using(AdminUsersTeam::class)
-            ->withPivot([
-                'role',
-            ]);
+        return AdminUsersTeam::get($this, AdminUsers::class);
     }
 
     public function syncUsers($users)
     {
-        AdminUsersTeamBO::sync($users, $this->users());
+        AdminUsersTeam::sync($users, $this->users());
     }
 }
