@@ -4,13 +4,14 @@
         {{ $fieldName }}
     </label>
     <div :class="isFormLocalized ? 'col-md-4' : '{{ $colSizeField }}'">
-        <admin-user-team-field :options="{{ $options }}" :values="form.{{ $vModel }}" inline-template>
+        <admin-user-team-field :options="{{ $options }}" :values.sync="form.{{ $vModel }}"
+            @change="form.{{ $vModel }} = $event;" inline-template>
             <div>
                 <div v-for="(line, lineNumber) in lines" class="mb-4">
                     <div class="row">
                         <div class="col-md-5">
                             <select class="form-control" v-model="line.id">
-                                <option value="">{{ $fieldName }}</option>
+                                <option value="" disabled>{{ $fieldName }}</option>
                                 <option v-for="option in options"
                                     :value="option.id" v-html="option.name">
                                 </option>
