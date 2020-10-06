@@ -21,10 +21,10 @@ class AdminUsersTeam extends Pivot
         $dataToSyncToRelateWithRoles = $dataToSyncToRelateCollect->mapWithKeys(function ($data) {
             return [
                 $data['id'] => [
-                    'role' => '',
+                    'role' => isset($data['role']) && $data['role'] ? $data['role'] : '',
                 ],
             ];
         });
-        $modelRelationshipToSync->sync(collect($dataToSyncToRelateWithRoles->toArray()));
+        $modelRelationshipToSync->sync($dataToSyncToRelateWithRoles->toArray());
     }
 }
