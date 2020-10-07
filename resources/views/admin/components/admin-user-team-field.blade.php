@@ -4,12 +4,12 @@
         {{ $fieldName }}
     </label>
     <div :class="isFormLocalized ? 'col-md-4' : '{{ $colSizeField }}'">
-        <admin-user-team-field :options="{{ $options }}" :values.sync="form.{{ $vModel }}"
+        <admin-user-team-field :options="{{ $options }}" :values="form.{{ $vModel }}"
             @change="form.{{ $vModel }} = $event;" inline-template>
-            <div>
-                <div v-for="(line, lineNumber) in lines" class="mb-4">
-                    <div class="row">
-                        <div class="col-md-5">
+            <div class="mt-2">
+                <div v-for="(line, lineNumber) in lines">
+                    <div class="row pb-3">
+                        <div class="col-md-6">
                             <select class="form-control" v-model="line.id">
                                 <option value="" disabled>{{ $fieldName }}</option>
                                 <option v-for="option in options"
@@ -20,24 +20,26 @@
                         <div class="col-md-5">
                             <input type="text" class="form-control" placeholder="Role" v-model="line.role" />
                         </div>
-                        <div class="col-md-2">
-                            <div class="btn btn-block text-danger text-center" @click="removeLine(lineNumber)">
-                                Remove
+                        <div class="col-md-1">
+                            <div class="btn btn-block text-danger text-center px-0" @click="removeLine(lineNumber)">
+                                <i class="nav-icon icon-minus font-weight-bold h5 my-0"></i>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <hr class="mt-0 mb-3" />
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-end">
-                    <div class="col-md-2">
-                        <div class="btn btn-block text-success text-center" @click="addLine">
-                            Add
+                    <div class="col-md-1">
+                        <div class="btn btn-block text-success text-center px-0" @click="addLine">
+                            <i class="nav-icon icon-plus font-weight-bold h5 my-0"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </admin-user-team-field>
-        {{-- <multiselect v-model="form.{{ $vModel }}" placeholder="{{ $fieldName }}"
-            label="name" track-by="id" :options="{{ $options }}" :multiple="true" open-direction="bottom">
-        </multiselect> --}}
     </div>
 </div>
