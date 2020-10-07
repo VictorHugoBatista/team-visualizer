@@ -10,7 +10,8 @@
                 <div v-for="(line, lineNumber) in lines">
                     <div class="row pb-3">
                         <div class="col-md-6">
-                            <select class="form-control" v-model="line.id">
+                            <select class="form-control" v-model="line.id"
+                                :class="{'border-danger': '' === line.id}">
                                 <option value="" disabled>{{ $fieldName }}</option>
                                 <option v-for="option in options"
                                     :value="option.id" v-html="option.name"
@@ -19,7 +20,9 @@
                             </select>
                         </div>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" placeholder="Role" v-model="line.role" />
+                            <input type="text" class="form-control"
+                                placeholder="Role" v-model="line.role"
+                                :class="{'border-danger': '' === line.role}">
                         </div>
                         <div class="col-md-1">
                             <div class="btn btn-block text-danger text-center px-0" @click="removeLine(lineNumber)">
