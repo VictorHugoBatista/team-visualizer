@@ -6,6 +6,7 @@ Vue.component('admin-user-team-field', {
     data() {
         return {
             lines: [],
+            selectedOptions: [],
         };
     },
     mounted() {
@@ -33,8 +34,12 @@ Vue.component('admin-user-team-field', {
         },
     },
     watch: {
-        lines(newLines) {
-            this.$emit('change', newLines);
+        lines: {
+            handler(newLines) {
+                this.selectedOptions = newLines.map(line => line.id);
+                this.$emit('change', newLines);
+            },
+            deep: true,
         },
     },
 });

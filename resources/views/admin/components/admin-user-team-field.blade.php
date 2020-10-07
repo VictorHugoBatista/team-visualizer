@@ -13,7 +13,8 @@
                             <select class="form-control" v-model="line.id">
                                 <option value="" disabled>{{ $fieldName }}</option>
                                 <option v-for="option in options"
-                                    :value="option.id" v-html="option.name">
+                                    :value="option.id" v-html="option.name"
+                                    :disabled="selectedOptions.includes(option.id)">
                                 </option>
                             </select>
                         </div>
