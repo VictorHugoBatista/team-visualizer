@@ -7,6 +7,7 @@ Vue.component('admin-user-team-field', {
     ],
     data() {
         return {
+            isRepeaterValid: true,
             lines: [],
             selectedOptions: [],
         };
@@ -32,10 +33,12 @@ Vue.component('admin-user-team-field', {
     watch: {
         lines: {
             handler(newLines) {
+                let repeaterValid = true;
                 this.selectedOptions = newLines.map(line => {
-                    line.validate();
+                    repeaterValid &&= line.validate();
                     return line.id;
                 });
+                this.isRepeaterValid = repeaterValid;
                 this.$emit('change', newLines);
             },
             deep: true,

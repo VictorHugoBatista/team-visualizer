@@ -8,6 +8,7 @@ export default class RepeaterLine {
     validate() {
         this.valid.id = 'undefined' !== typeof this.id && '' !== this.id;
         this.valid.role = 'undefined' !== typeof this.role && '' !== this.role;
+        return this.valid.id && this.valid.role;
     }
 
     isValid(field) {
