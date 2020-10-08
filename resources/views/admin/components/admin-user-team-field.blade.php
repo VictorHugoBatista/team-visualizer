@@ -11,7 +11,7 @@
                     <div class="row pb-3">
                         <div class="col-md-6">
                             <select class="form-control" v-model="line.id"
-                                :class="{'border-danger': '' === line.id}">
+                                :class="{'border-danger': ! line.isValid('id')}">
                                 <option value="" disabled>{{ $fieldName }}</option>
                                 <option v-for="option in options"
                                     :value="option.id" v-html="option.name"
@@ -22,7 +22,7 @@
                         <div class="col-md-5">
                             <input type="text" class="form-control"
                                 placeholder="Role" v-model="line.role"
-                                :class="{'border-danger': '' === line.role}">
+                                :class="{'border-danger': ! line.isValid('role')}">
                         </div>
                         <div class="col-md-1">
                             <div class="btn btn-block text-danger text-center px-0" @click="removeLine(lineNumber)">

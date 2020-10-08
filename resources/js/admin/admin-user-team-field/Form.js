@@ -1,3 +1,5 @@
+import RepeaterLine from './RepeaterLine';
+
 Vue.component('admin-user-team-field', {
     props: [
         'values',
@@ -18,16 +20,10 @@ Vue.component('admin-user-team-field', {
                 this.lines = [];
                 return;
             }
-            this.lines = newLines.map(line => ({
-                id: line.id,
-                role: line.pivot.role,
-            }));
+            this.lines = newLines.map(line => new RepeaterLine(line.id, line.pivot.role));
         },
         addLine() {
-            this.lines.push({
-                id: '',
-                role: '',
-            });
+            this.lines.push(new RepeaterLine('', ''));
         },
         removeLine(lineNumber) {
             this.lines.splice(lineNumber, 1);
@@ -36,7 +32,10 @@ Vue.component('admin-user-team-field', {
     watch: {
         lines: {
             handler(newLines) {
-                this.selectedOptions = newLines.map(line => line.id);
+                this.selectedOptions = newLines.map(line => {
+                    line.validate();
+                    return line.id;
+                });
                 this.$emit('change', newLines);
             },
             deep: true,
