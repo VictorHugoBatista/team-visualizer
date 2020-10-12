@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="/css/app.css" />
     </head>
     <body>
-        <div class="container">
+        <div class="container position-relative">
             @include('partials.topnav')
             @yield('content')
         </div>

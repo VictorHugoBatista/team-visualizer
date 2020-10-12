@@ -1,0 +1,9 @@
+.topnav {
+    background-color: map-get($theme-colors, 'secondary');
+    border-radius: 0 0 5px 5px;
+    color: map-get($theme-colors, 'secondary');
+    padding: 4px 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
