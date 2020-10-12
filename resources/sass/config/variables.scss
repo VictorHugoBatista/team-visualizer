@@ -1,9 +1,9 @@
 // Bootstrap variables.
 $body-bg: #F1F2F6;
 $theme-colors: (
-  "primary": #27187E,
-  "secondary": #FF8600,
+    'primary': #FF8600,
+    'secondary': #27187E,
+    'tertiary': $body-bg,
 );
 $link-color: map-get($theme-colors, 'primary');
-$link-hover-color: lighten($link-color, 30%);
 $link-hover-decoration: none;
