@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\BO\AdminUsersTeam;
+use App\Models\AdminUsersTeam;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
@@ -35,7 +35,7 @@ class Team extends Model
 
     public function users()
     {
-        return $this->belongsToMany(AdminUsers::class);
+        return AdminUsersTeam::get($this, AdminUsers::class);
     }
 
     public function syncUsers($users)
