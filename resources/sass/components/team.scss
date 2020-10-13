@@ -8,10 +8,30 @@
 
     .team-inner {
         background-color: $body-bg;
-        padding: 10px;
+        padding: 12px 15px;
         border-radius: 30px;
         box-shadow: 0 0 15px -6px rgba(#000, .3);
         height: 100%;
         width: 100%;
+    }
+
+    .team-title {
+        color: map-get($theme-colors, 'secondary');
+        font-size: 18px;
+        padding-bottom: 12px;
+        position: relative;
+        text-align: center;
+        width: 100%;
+
+        &:after {
+            background: linear-gradient(to right, rgba(darken($body-bg, 5%), .25) 0, rgba(darken($body-bg, 5%), 1) 35%, rgba(darken($body-bg, 5%), 1) 65%, rgba(darken($body-bg, 5%), .25) 100%);
+            bottom: 0;
+            content: '';
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+            width: 100%;
+        }
     }
 }
