@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import teams from './components/Teams.vue';
+import showcase from './components/Showcase.vue';
 
-Vue.component('teams', teams);
+Vue.component('showcase', showcase);
 
 const app = new Vue({
     el: '#app',
