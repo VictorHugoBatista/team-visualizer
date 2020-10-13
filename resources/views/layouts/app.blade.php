@@ -15,8 +15,8 @@
         <div id="app">
             <div class="container position-relative">
                 @include('partials.topnav')
-                @yield('content')
             </div>
+            @yield('content')
         </div>
 
         <script src="/js/app.js"></script>
