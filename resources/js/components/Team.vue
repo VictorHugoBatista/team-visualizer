@@ -1,7 +1,9 @@
 <template>
   <div class="team">
-      <div class="team-title">
-          {{ name }}
+      <div class="team-inner">
+        <div class="team-title">
+            {{ name }}
+        </div>
       </div>
   </div>
 </template>

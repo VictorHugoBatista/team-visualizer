@@ -1,6 +1,6 @@
 <template>
   <div class="showcase">
-    <carousel :per-page="4" :navigate-to="someLocalProperty" :mouse-drag="false">
+    <carousel :per-page="4" :mouse-drag="true">
       <slide>
         <Team :data="{name: 'Team 1'}"></Team>
       </slide>
