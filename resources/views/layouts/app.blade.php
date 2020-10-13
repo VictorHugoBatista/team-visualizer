@@ -12,9 +12,11 @@
         <link rel="stylesheet" href="/css/app.css" />
     </head>
     <body>
-        <div class="container position-relative">
-            @include('partials.topnav')
-            @yield('content')
+        <div id="app">
+            <div class="container position-relative">
+                @include('partials.topnav')
+                @yield('content')
+            </div>
         </div>
     </body>
 </html>
