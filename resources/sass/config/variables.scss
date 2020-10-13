@@ -7,3 +7,6 @@ $theme-colors: (
 );
 $link-color: map-get($theme-colors, 'primary');
 $link-hover-decoration: none;
+
+$font-family-title: 'Bree Serif', serif;
+$font-family-primary: 'Noto Sans JP', sans-serif;

@@ -17,7 +17,9 @@
 
     .team-title {
         color: map-get($theme-colors, 'secondary');
-        font-size: 18px;
+        font-family: $font-family-title;
+        font-size: 22px;
+        letter-spacing: 1.1px;
         padding-bottom: 12px;
         position: relative;
         text-align: center;
