@@ -2,26 +2,31 @@
   <div class="showcase">
     <carousel :per-page="4" :navigate-to="someLocalProperty" :mouse-drag="false">
       <slide>
-        Slide 1 Content
+        <Team :data="{name: 'Team 1'}"></Team>
       </slide>
       <slide>
-        Slide 2 Content
+        <Team :data="{name: 'Team 2'}"></Team>
       </slide>
       <slide>
-        Slide 3 Content
+        <Team :data="{name: 'Team 3'}"></Team>
       </slide>
       <slide>
-        Slide 4 Content
+        <Team :data="{name: 'Team 4'}"></Team>
       </slide>
       <slide>
-        Slide 5 Content
+        <Team :data="{name: 'Team 5'}"></Team>
       </slide>
     </carousel>
   </div>
 </template>
 
 <script>
+import Team from './Team';
+
 export default {
   name: 'Showcase',
+  components: {
+    Team
+  },
 }
 </script>
