@@ -1,20 +1,8 @@
 <template>
   <div class="showcase">
     <carousel :per-page="4" :mouse-drag="true">
-      <slide>
-        <Team :data="{name: 'Team 1'}"></Team>
-      </slide>
-      <slide>
-        <Team :data="{name: 'Team 2'}"></Team>
-      </slide>
-      <slide>
-        <Team :data="{name: 'Team 3'}"></Team>
-      </slide>
-      <slide>
-        <Team :data="{name: 'Team 4'}"></Team>
-      </slide>
-      <slide>
-        <Team :data="{name: 'Team 5'}"></Team>
+      <slide v-for="team in teams" :key="team.name">
+        <Team :data="team"></Team>
       </slide>
     </carousel>
   </div>
@@ -26,7 +14,58 @@ import Team from './Team';
 export default {
   name: 'Showcase',
   components: {
-    Team
+    Team,
+  },
+  data() {
+    return {
+      teams: [
+        {
+          name: 'Team 1',
+          members: [
+            {
+              name: 'People 1',
+              role: 'SM',
+            },
+            {
+              name: 'People 2',
+              role: 'Tech Lead',
+            },
+            {
+              name: 'People 3',
+              role: 'QA',
+            },
+            {
+              name: 'People 4',
+              role: 'Dev',
+            },
+            {
+              name: 'People 5',
+              role: 'Dev',
+            },
+            {
+              name: 'People 6',
+              role: 'Dev',
+            },
+          ],
+        },
+        {
+          name: 'Team 2',
+          members: [],
+        },
+        {
+          name: 'Team 3',
+          members: [],
+        },
+        {
+          name: 'Team 4',
+          members: [],
+        },
+        {
+          name: 'Team 5',
+          members: [],
+        },
+      ],
+    };
   },
 }
 </script>
