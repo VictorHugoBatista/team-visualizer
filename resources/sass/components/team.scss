@@ -20,6 +20,7 @@
         font-family: $font-family-title;
         font-size: 22px;
         letter-spacing: 1.1px;
+        margin-bottom: 12px;
         padding-bottom: 12px;
         position: relative;
         text-align: center;
@@ -34,6 +35,29 @@
             position: absolute;
             transform: translateX(-50%);
             width: 100%;
+        }
+    }
+
+    .team-content {
+        padding: 0 10px;
+    }
+
+    .team-member {
+        font-family: $font-family-primary;
+        line-height: 1.4;
+        margin-bottom: 10px;
+        text-align: center;
+
+        .team-member-title {
+            color: map-get($theme-colors, 'secondary');
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: .8px;
+        }
+
+        .team-member-subtitle {
+            color: darken(map-get($theme-colors, 'primary'), 5%);
+            font-size: 15px;
         }
     }
 }
