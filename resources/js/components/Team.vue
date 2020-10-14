@@ -5,9 +5,14 @@
             {{ name }}
         </div>
         <div class="team-content">
-          <div class="row">
-            <div class="col-6" v-for="member in members" :key="member.name">
-              <div class="team-member">
+          <div class="team-member" v-for="member in members" :key="member.name">
+            <div class="row no-gutters">
+              <div class="col-4">
+                <div class="team-member-thumbnail">
+                  <img :src="member.thumbnail" :alt="member.name" />
+                </div>
+              </div>
+              <div class="col-8">
                 <div class="team-member-title">
                   {{ member.name }}
                 </div>

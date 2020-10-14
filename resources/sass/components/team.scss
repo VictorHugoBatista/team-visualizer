@@ -20,7 +20,8 @@
         font-family: $font-family-title;
         font-size: 22px;
         letter-spacing: 1.1px;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
+        overflow-y: auto;
         padding-bottom: 12px;
         position: relative;
         text-align: center;
@@ -44,9 +45,17 @@
 
     .team-member {
         font-family: $font-family-primary;
-        line-height: 1.4;
-        margin-bottom: 10px;
-        text-align: center;
+        margin-bottom: 20px;
+
+        .team-member-thumbnail {
+            height: auto;
+            width: 75px;
+
+            img {
+                height: auto;
+                width: 100%;
+            }
+        }
 
         .team-member-title {
             color: map-get($theme-colors, 'secondary');
