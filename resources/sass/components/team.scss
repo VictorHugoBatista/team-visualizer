@@ -55,13 +55,15 @@
         }
 
         .team-member-thumbnail {
+            box-shadow: 4px 4px 7px 0 rgba(#000, .2);
             height: auto;
-            margin-right: 10px;
-            transition: transform 210ms;
+            margin-right: 15px;
+            transition: box-shadow 210ms ease-out, transform 210ms;
             width: 75px;
 
             &:hover {
-                transform: scale(2) translate(19px, 19px);
+                box-shadow: 5px 5px 10px 0 rgba(#000, .2);
+                transform: scale(2) translate(18px, 18px);
             }
 
             img {
@@ -71,7 +73,7 @@
         }
 
         .team-member-content {
-            width: calc(100% - 85px);
+            width: calc(100% - 90px);
         }
 
         .team-member-title {
