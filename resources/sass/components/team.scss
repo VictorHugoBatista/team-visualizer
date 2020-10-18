@@ -57,7 +57,12 @@
         .team-member-thumbnail {
             height: auto;
             margin-right: 10px;
+            transition: transform 210ms;
             width: 75px;
+
+            &:hover {
+                transform: scale(2) translate(19px, 19px);
+            }
 
             img {
                 height: auto;
