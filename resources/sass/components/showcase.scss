@@ -19,4 +19,17 @@
     .VueCarousel-slide {
         padding: 0 10px;
     }
+
+    .VueCarousel-dot-container {
+        margin-top: 10px !important;
+    }
+
+    .VueCarousel-dot {
+        background-color: map-get($theme-colors, 'primary') !important;
+        margin-top: 0 !important;
+        
+        &.VueCarousel-dot--active {
+            background-color: map-get($theme-colors, 'secondary') !important;
+        }
+    }
 }
