@@ -1,0 +1,12 @@
+// Bootstrap variables.
+$body-bg: #F1F2F6;
+$theme-colors: (
+    'primary': #FF8600,
+    'secondary': #27187E,
+    'tertiary': $body-bg,
+);
+$link-color: map-get($theme-colors, 'primary');
+$link-hover-decoration: none;
+
+$font-family-title: 'Bree Serif', serif;
+$font-family-primary: 'Noto Sans JP', sans-serif;

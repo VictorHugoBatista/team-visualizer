@@ -1,0 +1,91 @@
+.team {
+    background-color: map-get($theme-colors, 'primary');
+    border-radius: 30px;
+    box-shadow: inset 0 0 15px -6px rgba(#000, .4);
+    height: 100%;
+    padding: 7px;
+    width: 100%;
+
+    .team-inner {
+        background-color: $body-bg;
+        padding: 12px 15px;
+        border-radius: 30px;
+        box-shadow: 0 0 15px -6px rgba(#000, .3);
+        height: 100%;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .team-title {
+        color: map-get($theme-colors, 'secondary');
+        font-family: $font-family-title;
+        font-size: 22px;
+        letter-spacing: 1.1px;
+        margin-bottom: 15px;
+        padding-bottom: 12px;
+        position: relative;
+        text-align: center;
+        width: 100%;
+
+        &:after {
+            background: linear-gradient(to right, rgba(darken($body-bg, 5%), .25) 0, rgba(darken($body-bg, 5%), 1) 35%, rgba(darken($body-bg, 5%), 1) 65%, rgba(darken($body-bg, 5%), .25) 100%);
+            bottom: 0;
+            content: '';
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+            width: 100%;
+        }
+    }
+
+    .team-content {
+        height: calc(100% - 45px);
+        padding: 0 10px;
+        overflow-y: auto;
+    }
+
+    .team-member {
+        font-family: $font-family-primary;
+        margin-bottom: 20px;
+
+        .team-member-thumbnail,
+        .team-member-content {
+            float: left;
+        }
+
+        .team-member-thumbnail {
+            box-shadow: 4px 4px 7px 0 rgba(#000, .2);
+            height: auto;
+            margin-right: 15px;
+            transition: box-shadow 210ms ease-out, transform 210ms;
+            width: 75px;
+
+            &:hover {
+                box-shadow: 5px 5px 10px 0 rgba(#000, .2);
+                transform: scale(2) translate(18px, 18px);
+            }
+
+            img {
+                height: auto;
+                width: 100%;
+            }
+        }
+
+        .team-member-content {
+            width: calc(100% - 90px);
+        }
+
+        .team-member-title {
+            color: map-get($theme-colors, 'secondary');
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: .8px;
+        }
+
+        .team-member-subtitle {
+            color: darken(map-get($theme-colors, 'primary'), 5%);
+            font-size: 15px;
+        }
+    }
+}
