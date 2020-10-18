@@ -47,14 +47,24 @@
         font-family: $font-family-primary;
         margin-bottom: 20px;
 
+        .team-member-thumbnail,
+        .team-member-content {
+            float: left;
+        }
+
         .team-member-thumbnail {
             height: auto;
+            margin-right: 10px;
             width: 75px;
 
             img {
                 height: auto;
                 width: 100%;
             }
+        }
+
+        .team-member-content {
+            width: calc(100% - 85px);
         }
 
         .team-member-title {
