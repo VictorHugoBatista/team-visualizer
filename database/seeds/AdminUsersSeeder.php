@@ -13,8 +13,13 @@ class AdminUsersSeeder extends Seeder
      */
     public function run()
     {
-        factory(AdminUsers::class, 10)->create()->each(function ($adminUser) {
-            factory(Team::class, 5)->create()->each(function ($team) use ($adminUser) {
+        $createdAdminUsers = factory(AdminUsers::class, 10)->create();
+        $this->command->info('Admin Users created!');
+        $createdAdminUsers->each(function ($adminUser) {
+            $this->command->info("Creating Teams for user {$adminUser->id}...");
+            $createdAdminUserTeams = factory(Team::class, 5)->create();
+            $createdAdminUserTeams->each(function ($team) use ($adminUser) {
+                $this->command->info("Team {$team->id} for user {$adminUser->id} created!");
                 $adminUser->teams()->attach($team, [
                     'role' => 'test',
                 ]);
