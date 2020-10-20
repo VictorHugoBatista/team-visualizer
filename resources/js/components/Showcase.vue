@@ -23,7 +23,19 @@ export default {
     };
   },
   mounted() {
-    teamsService.get(teams => this.teams = teams);
+    this.updateTeams();
+  },
+  methods: {
+    updateTeams() {
+      const updateTeamsData = teams => {
+        this.teams = teams;
+      };
+      const afterRequest = () => {
+        console.log('turn off the loading');
+      };
+      console.log('turn on the loading')
+      teamsService.get(updateTeamsData, afterRequest);
+    },
   },
 }
 </script>
