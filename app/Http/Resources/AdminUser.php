@@ -17,7 +17,7 @@ class AdminUser extends JsonResource
     {
         $userThumbnailMedia = $this->media;
         $userThumbnailUrl = $userThumbnailMedia instanceof Media ?
-            "/media/{$userThumbnailMedia->id}/conversions/{$userThumbnailMedia->file_name}" : '';
+            $userThumbnailMedia->getUrl('thumb_75') : '';
         return [
             'thumbnail' => $userThumbnailUrl,
             'name' => $this->full_name,
