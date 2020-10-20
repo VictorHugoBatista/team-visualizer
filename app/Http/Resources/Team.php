@@ -15,8 +15,8 @@ class Team extends JsonResource
     public function toArray($request)
     {
         return [
-            'title' => $this->title,
-            'teams' => AdminUser::collection($this->users),
+            'name' => $this->title,
+            'members' => AdminUser::collection($this->users),
         ];
     }
 }
