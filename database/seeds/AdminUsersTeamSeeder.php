@@ -28,10 +28,15 @@ class AdminUsersTeamSeeder extends Seeder
             $createdAdminUsers = factory(AdminUsers::class, $this->usersToCreatePerTeam)->create();
 
             $createdAdminUsers->each(function ($adminuser) use ($team, $faker) {
-                $this->command->info("User id {$adminuser->id} for team id {$team->id} created!");
                 $team->users()->attach($adminuser, [
                     'role' => $faker->jobTitle,
                 ]);
+                $this->command->info("User id {$adminuser->id} for team id {$team->id} created!");
+
+                AdminUsers::find($adminuser->id)->addMedia(storage_path() . '/images/avatar.png')
+                    ->preservingOriginal()
+                    ->toMediaCollection('avatar', 'media');
+                $this->command->info("Avatar added for user id {$adminuser->id}!");
             });
         });
     }
