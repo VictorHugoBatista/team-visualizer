@@ -7,6 +7,10 @@ use Illuminate\Database\Seeder;
 
 class AdminUsersTeamSeeder extends Seeder
 {
+    private $teamsToCreate = 10;
+
+    private $usersToCreatePerTeam = 5;
+
     /**
      * Run the database seeds.
      *
@@ -16,16 +20,16 @@ class AdminUsersTeamSeeder extends Seeder
     {
         $faker = FakerFactory::create();
 
-        $createdAdminUsers = factory(AdminUsers::class, 10)->create();
-        $this->command->info('Admin Users created!');
+        $createdTeams = factory(Team::class, $this->teamsToCreate)->create();
+        $this->command->info('Teams created!');
 
-        $createdAdminUsers->each(function ($adminUser) use ($faker) {
-            $this->command->info("Creating Teams for user {$adminUser->id}...");
-            $createdAdminUserTeams = factory(Team::class, $faker->randomDigit)->create();
+        $createdTeams->each(function ($team) use ($faker) {
+            $this->command->info("Creating users for team id {$team->id}...");
+            $createdAdminUsers = factory(AdminUsers::class, $this->usersToCreatePerTeam)->create();
 
-            $createdAdminUserTeams->each(function ($team) use ($adminUser, $faker) {
-                $this->command->info("Team {$team->id} for user {$adminUser->id} created!");
-                $adminUser->teams()->attach($team, [
+            $createdAdminUsers->each(function ($adminuser) use ($team, $faker) {
+                $this->command->info("User id {$adminuser->id} for team id {$team->id} created!");
+                $team->users()->attach($adminuser, [
                     'role' => $faker->jobTitle,
                 ]);
             });
