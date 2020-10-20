@@ -15,7 +15,7 @@ class AdminUser extends JsonResource
     public function toArray($request)
     {
         return [
-            'thumbnail' => 'ibagem',
+            'thumbnail' => $this->getThumbnailUrl() ?: '',
             'name' => $this->full_name,
             'role' => $this->pivot->role,
         ];

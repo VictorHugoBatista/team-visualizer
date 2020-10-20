@@ -19,6 +19,11 @@ class AdminUsers extends AdminUser
         return $this->getFullNameAttribute();
     }
 
+    public function getThumbnailUrl($size = 75): ?string
+    {
+        return $this->getFirstMediaUrl('avatar', "thumb_{$size}") ?: null;
+    }
+
     public function teams()
     {
         return AdminUsersTeam::get($this, Team::class);
