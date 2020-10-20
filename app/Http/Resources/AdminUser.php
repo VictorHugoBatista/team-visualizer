@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Spatie\MediaLibrary\Models\Media;
 
 class AdminUser extends JsonResource
 {
@@ -14,8 +15,11 @@ class AdminUser extends JsonResource
      */
     public function toArray($request)
     {
+        $userThumbnailMedia = $this->media;
+        $userThumbnailUrl = $userThumbnailMedia instanceof Media ?
+            "/media/{$userThumbnailMedia->id}/conversions/{$userThumbnailMedia->file_name}" : '';
         return [
-            'thumbnail' => $this->getThumbnailUrl() ?: '',
+            'thumbnail' => $userThumbnailUrl,
             'name' => $this->full_name,
             'role' => $this->pivot->role,
         ];

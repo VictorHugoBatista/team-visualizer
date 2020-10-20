@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\AdminUsersTeam;
 use App\Models\Team;
 use Brackets\AdminAuth\Models\AdminUser;
+use Spatie\MediaLibrary\Models\Media;
 
 class AdminUsers extends AdminUser
 {
@@ -19,14 +20,14 @@ class AdminUsers extends AdminUser
         return $this->getFullNameAttribute();
     }
 
-    public function getThumbnailUrl($size = 75): ?string
-    {
-        return $this->getFirstMediaUrl('avatar', "thumb_{$size}") ?: null;
-    }
-
     public function teams()
     {
         return AdminUsersTeam::get($this, Team::class);
+    }
+
+    public function media()
+    {
+        return $this->belongsTo(Media::class, 'id', 'model_id');
     }
 
     public function syncTeams($teams)
