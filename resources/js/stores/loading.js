@@ -1,20 +1,20 @@
 export default {
     namespaced: true,
     state: {
-        showLoading: false,
+        visible: false,
     },
     mutations: {
         setLoadingVisibility(state, {visibility}) {
-            state.showLoading = visibility;
+            state.visible = visibility;
         },
     },
     actions: {
-        showLoading({commit}) {
+        show({commit}) {
             commit('setLoadingVisibility', {
                 visibility: true,
             });
         },
-        hideLoading({commit}) {
+        hide({commit}) {
             commit('setLoadingVisibility', {
                 visibility: false,
             });

@@ -1,5 +1,5 @@
 <template>
-    <div class="loading">
+    <div class="loading" :class="{ 'loading-active': $store.state.loading.visible }">
         <div class="loading-content">
             Loading...
         </div>

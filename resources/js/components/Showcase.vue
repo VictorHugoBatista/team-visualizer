@@ -31,9 +31,9 @@ export default {
         this.teams = teams;
       };
       const afterRequest = () => {
-        console.log('turn off the loading');
+        this.$store.dispatch('loading/hide');
       };
-      console.log('turn on the loading')
+      this.$store.dispatch('loading/show');
       teamsService.get(updateTeamsData, afterRequest);
     },
   },
