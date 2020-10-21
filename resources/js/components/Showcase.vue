@@ -10,6 +10,7 @@
 
 <script>
 import Team from './Team';
+import teamsService from '../services/teams';
 
 export default {
   name: 'Showcase',
@@ -18,60 +19,23 @@ export default {
   },
   data() {
     return {
-      teams: [
-        {
-          name: 'Team 1',
-          members: [
-            {
-              thumbnail: 'https://via.placeholder.com/75',
-              name: 'People 1',
-              role: 'SM',
-            },
-            {
-              thumbnail: 'https://via.placeholder.com/75',
-              name: 'People 2',
-              role: 'Tech Lead',
-            },
-            {
-              thumbnail: 'https://via.placeholder.com/75',
-              name: 'People 3',
-              role: 'QA',
-            },
-            {
-              thumbnail: 'https://via.placeholder.com/75',
-              name: 'People 4',
-              role: 'Dev',
-            },
-            {
-              thumbnail: 'https://via.placeholder.com/75',
-              name: 'People 5',
-              role: 'Dev',
-            },
-            {
-              thumbnail: 'https://via.placeholder.com/75',
-              name: 'People 6',
-              role: 'Dev',
-            },
-          ],
-        },
-        {
-          name: 'Team 2',
-          members: [],
-        },
-        {
-          name: 'Team 3',
-          members: [],
-        },
-        {
-          name: 'Team 4',
-          members: [],
-        },
-        {
-          name: 'Team 5',
-          members: [],
-        },
-      ],
+      teams: [],
     };
+  },
+  mounted() {
+    this.updateTeams();
+  },
+  methods: {
+    updateTeams() {
+      const updateTeamsData = teams => {
+        this.teams = teams;
+      };
+      const afterRequest = () => {
+        this.$store.dispatch('loading/hide');
+      };
+      this.$store.dispatch('loading/show');
+      teamsService.get(updateTeamsData, afterRequest);
+    },
   },
 }
 </script>

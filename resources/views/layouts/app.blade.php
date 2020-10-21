@@ -17,6 +17,7 @@
                 @include('partials.topnav')
             </div>
             @yield('content')
+            <loading></loading>
         </div>
 
         <script src="/js/app.js"></script>
